@@ -1,29 +1,23 @@
 /**
- * Swaps the head and tail of the specified array:
- * the head (first half) of array move to the end, the tail (last half) move to the start.
- * The middle element (if exists) leave on the same position.
+ * Returns true if specified date is leap year and false otherwise
+ * Please find algorithm here: https://en.wikipedia.org/wiki/Leap_year#Algorithm
  *
+ * @param {date} date
+ * @return {bool}
  *
- * @param {array} arr
- * @return {array}
- *
- * @example
- *   [ 1, 2, 3, 4, 5 ]   =>  [ 4, 5, 3, 1, 2 ]
- *    \----/   \----/
- *     head     tail
- *
- *   [ 1, 2 ]  => [ 2, 1 ]
- *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
- *
+ * @example :
+ *    Date(1900,1,1)    => false
+ *    Date(2000,1,1)    => true
+ *    Date(2001,1,1)    => false
+ *    Date(2012,1,1)    => true
+ *    Date(2015,1,1)    => false
  */
- function swapHeadAndTail(arr) {
-  if (arr.length === 1) return arr;
-  const halfLength = Math.floor(arr.length / 2);
-  const res = [];
-  res.push(arr.slice(-halfLength));
-  if (arr.length % 2) res.push(halfLength);
-  res.push(arr.slice(0, halfLength));
-  return res.flat();
+ function isLeapYear(date) {
+  const year = date.getFullTear();
+  if (year % 4) return false;
+  if (year % 100) return true;
+  if (year % 400) return false;
+  return true;
 }
 
-console.log(swapHeadAndTail([1, 2, 3]));
+console.log(isLeapYear( Date(1900,1,1)));
